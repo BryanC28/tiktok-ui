@@ -66,7 +66,7 @@ export default function Search() {
     const fetchAPI = async () => {
       setLoading(true);
       const result = await searchService.search(debounced);
-      // console.log(result);
+      console.log(result);
       setSearchResult(result);
       setLoading(false);
     };
@@ -81,49 +81,54 @@ export default function Search() {
     setSearchResult([]);
     inputRef.current.focus();
   };
+  const handleChangeInput = (e) => {
+    const searchValue = e.target.value;
+    if (!searchValue.startsWith(" ")) {
+      setSearchInput(searchValue);
+    }
+  };
 
   return (
-    <HeadlessTippy
-      interactive
-      visible={showResult && searchResult.length > 0}
-      onClickOutside={handleHideResult}
-      render={(attrs) => (
-        <div className={cs("search-result")} tabIndex="-1" {...attrs}>
-          <ProperWrapper>
-            <h4 className={cs("search-title")}>Accounts</h4>
-            {searchResult.map((result) => (
-              <AccountItem key={result.id} data={result} />
-            ))}
-          </ProperWrapper>
-        </div>
-      )}
-    >
-      <div className={cs("search")}>
-        <input
-          ref={inputRef}
-          value={searchInput}
-          placeholder="Search accounts and videos"
-          spellCheck="false"
-          onFocus={() => {
-            setShowResult(true);
-          }}
-          onChange={(e) => {
-            setSearchInput(e.target.value);
-            // console.log(e.target.value);
-          }}
-        />
-        {!!searchInput && !loading && (
-          <button className={cs("search-cls")} onClick={handleClearReseult}>
-            <FontAwesomeIcon icon={faCircleXmark} />
+    <div>
+      <HeadlessTippy
+        interactive
+        visible={showResult && searchResult.length > 0}
+        onClickOutside={handleHideResult}
+        render={(attrs) => (
+          <div className={cs("search-result")} tabIndex="-1" {...attrs}>
+            <ProperWrapper>
+              <h4 className={cs("search-title")}>Accounts</h4>
+              {searchResult.map((result) => (
+                <AccountItem key={result.id} data={result} />
+              ))}
+            </ProperWrapper>
+          </div>
+        )}
+      >
+        <div className={cs("search")}>
+          <input
+            ref={inputRef}
+            value={searchInput}
+            placeholder="Search accounts and videos"
+            spellCheck="false"
+            onFocus={() => {
+              setShowResult(true);
+            }}
+            onChange={handleChangeInput}
+          />
+          {!!searchInput && !loading && (
+            <button className={cs("search-cls")} onClick={handleClearReseult}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
+          {loading && (
+            <FontAwesomeIcon className={cs("search-loading")} icon={faSpinner} />
+          )}
+          <button className={cs("search-btn")} onMouseDown={(e)=>e.preventDefault()}>
+            <SearchIcon />
           </button>
-        )}
-        {loading && (
-          <FontAwesomeIcon className={cs("search-loading")} icon={faSpinner} />
-        )}
-        <button className={cs("search-btn")}>
-          <SearchIcon />
-        </button>
-      </div>
-    </HeadlessTippy>
+        </div>
+      </HeadlessTippy>
+    </div>
   );
 }

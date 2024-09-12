@@ -2,12 +2,13 @@ import Home from "~/components/Home"
 import Following from "~/components/Following"
 import Upload from "~/components/Upload"
 import Profile from "~/components/Profile"
+import routeConfig from "~/config/configRoute"
 
 export const publicRoutes = [
-    { path: '/', component: Home },
-    { path: '/:nickname', component: Profile },
-    { path: '/following', component: Following },
-    { path: '/upload', component: Upload ,layout:null}
+    { path: routeConfig.home, component: Home },
+    { path: routeConfig.profile, component: Profile },
+    { path: routeConfig.following, component: Following },
+    { path: routeConfig.upload, component: Upload ,layout:null}
 ]
 
 export const privateRoutes = [

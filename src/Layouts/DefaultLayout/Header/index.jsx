@@ -17,15 +17,16 @@ import {
 import Button from "~/components/Buttons/Button";
 import style from "~/css/header/Header.module.scss";
 import { images } from "~/assets/images";
-
+import routeConfig from "~/config/configRoute"
 import Menu from "~/components/Propers/Menu";
 import { InboxIcon, MessageIcon, UploadIcon } from "~/components/Icons/Icons";
 import Image from "~/components/Images/Images";
 import Search from "~/components/Search/Search";
+import { Link } from "react-router-dom";
+// import { useState } from "react";
 
 const cs = classNames.bind(style);
 export default function Header() {
- 
   const MENU_ITEMS = [
     {
       icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -80,9 +81,10 @@ export default function Header() {
       separate: true,
     },
   ];
-
-  const current_user = true;
-
+  const currentUser = true;
+  // const handleLogout = () => {
+  //   setCurrentUser(false);
+  // }
   // Handle logic
   const handleMenuChange = (menuItem) => {
     switch (menuItem.type) {
@@ -96,14 +98,14 @@ export default function Header() {
   return (
     <header className={cs("wrapper")}>
       <div className={cs("inner")}>
-        <div className={cs("logo")}>
+        <Link to={routeConfig.home} className={cs("logo")}>
           <img src={images.logo} alt="tiktok" />
-        </div>
+        </Link>
         {/* Search */}
-        <Search/>
+        <Search />
         {/* Actions */}
         <div className={cs("actions")}>
-          {current_user ? (
+          {currentUser ? (
             <>
               <Tippy delay={[0, 50]} content="upload video" placement="bottom">
                 <button className={cs("action-btn")}>
@@ -129,10 +131,10 @@ export default function Header() {
             </>
           )}
           <Menu
-            items={current_user ? userMenu : MENU_ITEMS}
+            items={currentUser ? userMenu : MENU_ITEMS}
             onchange={handleMenuChange}
           >
-            {current_user ? (
+            {currentUser ? (
               <Image
                 src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/07c2b080eabf890e7d90e2de0eebd206.jpeg?lk3s=a5d48078&nonce=64097&refresh_token=d410746262301ad4b86c0724107d6dfb&x-expires=1726135200&x-signature=fB%2BReHCQotWm3WFZUmyWCrApH%2FE%3D&shp=a5d48078&shcp=b59d6b55"
                 className={cs("user-avatar")}
@@ -149,3 +151,5 @@ export default function Header() {
     </header>
   );
 }
+
+

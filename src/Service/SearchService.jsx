@@ -1,8 +1,8 @@
-import * as request from "~/ultils/request";
+import * as HttpRequest from "~/ultils/HttpRequest";
 
 export const search = async (q, type = "less") => {
   try {
-    const res = await request.get("users/search", {
+    const res = await HttpRequest.get("users/search", {
       params: {
         q,
         type,

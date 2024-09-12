@@ -4,11 +4,16 @@
   --search-top-space: 9px;
   --search-width: 52px;
 
-  width: 100%;
-  height: var(--defautl-layout-header-height, 60px);
-  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: var(--defautl-layout-header-height);
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+  background-color: var(--white);
 }
 
 .inner {
@@ -18,6 +23,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--defautl-layout-horizontal-spacer);
+}
+.logo {
+  display: flex;
 }
 
 // Actions
@@ -45,18 +53,18 @@
 }
 
 .badge {
-    position: absolute;
-    top: -3px;
-    right: 0px;
-    padding: 0px 6px;
-    height: 2rem;
-    line-height: 2rem;
-    border-radius: 10px;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--white);
-    font-family: 'ProximaNova', sans-serif;
-    background-color: var(--primary);
+  position: absolute;
+  top: -3px;
+  right: 0px;
+  padding: 0px 6px;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--white);
+  font-family: "ProximaNova", sans-serif;
+  background-color: var(--primary);
 }
 
 .user-avatar {
