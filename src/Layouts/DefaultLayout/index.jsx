@@ -1,5 +1,5 @@
-import Header from "./Header";
-import SideBar from "./SideBar";
+import Header from "./Header/Header";
+import SideBar from "./SideBar/SideBar";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 import style from "~/css/defautl/DefLayout.module.scss";

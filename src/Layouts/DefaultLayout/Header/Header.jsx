@@ -15,9 +15,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "~/components/Buttons/Button";
-import style from "~/css/header/Header.module.scss";
+import style from "~/css/Header/Header.module.scss";
 import { images } from "~/assets/images";
-import routeConfig from "~/config/configRoute"
+import routeConfig from "~/config/configRoute";
 import Menu from "~/components/Propers/Menu";
 import { InboxIcon, MessageIcon, UploadIcon } from "~/components/Icons/Icons";
 import Image from "~/components/Images/Images";
@@ -151,5 +151,3 @@ export default function Header() {
     </header>
   );
 }
-
-
